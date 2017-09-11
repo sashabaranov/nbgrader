@@ -154,7 +154,7 @@ def get_username():
     """Get the username of the current process."""
     if pwd is None:
         raise OSError("get_username cannot be called on Windows")
-    return pwd.getpwuid(os.getuid())[0]
+    return os.environ.get("JPY_USER") or pwd.getpwuid(os.getuid())[0]
 
 
 def find_owner(path):
